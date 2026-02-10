@@ -4,7 +4,7 @@ export interface RemedySchema {
     missingElement: "Wood" | "Fire" | "Earth" | "Metal" | "Water";
     artStyle: string;
     musicTempo: string;
-    colorCode: string;
+    colorCode: string; // Hex code for Muted Tone
     keyword: string;
 }
 
@@ -13,35 +13,35 @@ export const REMEDY_MAPPING: Record<string, RemedySchema> = {
         missingElement: "Wood",
         artStyle: "Forest, Growth, Vertical Lines",
         musicTempo: "Andante (Walking Pace, nature sounds)",
-        colorCode: "#15803D", // Green
+        colorCode: "#81B29A", // Sage Green (Muted)
         keyword: "Growth (성장)"
     },
     Fire: {
         missingElement: "Fire",
-        artStyle: "Impressionism, Light, Passion, Sun",
-        musicTempo: "Allegro (Upbeat, warm energy)",
-        colorCode: "#B91C1C", // Red
+        artStyle: "Impressionism, Light, Warmth",
+        musicTempo: "Allegro (Upbeat, Passionate)",
+        colorCode: "#E07A5F", // Terracotta (Muted Red)
         keyword: "Passion (열정)"
     },
     Earth: {
         missingElement: "Earth",
-        artStyle: "Landscape, Mountains, Texture, Stability",
-        musicTempo: "Adagio (Slow, grounding)",
-        colorCode: "#A16207", // Brown/Gold
+        artStyle: "Landscape, Horizon, Texture",
+        musicTempo: "Adagio (Slow, Grounded)",
+        colorCode: "#F2CC8F", // Mustard Yellow (Muted)
         keyword: "Stability (안정)"
     },
     Metal: {
         missingElement: "Metal",
-        artStyle: "Minimalism, Structure, Black & White",
-        musicTempo: "Moderato (Clean, precise rhythm)",
-        colorCode: "#E5E5E5", // Silver/White
+        artStyle: "Minimalism, Geometry, Clarity",
+        musicTempo: "Moderato (Clean, structured)",
+        colorCode: "#A8DADC", // Pale Cyan (Muted Silver/Blue)
         keyword: "Clarity (명료)"
     },
     Water: {
         missingElement: "Water",
-        artStyle: "Abstract, Ocean, Flow, Night",
-        musicTempo: "Largo (Flowing, deep resonance)",
-        colorCode: "#1E3A8A", // Blue
+        artStyle: "Abstract, Fluidity, Depth",
+        musicTempo: "Largo (Flowing, Deep)",
+        colorCode: "#3D5A80", // Slate Blue (Muted)
         keyword: "Wisdom (지혜)"
     }
 };
