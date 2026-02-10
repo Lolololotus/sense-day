@@ -8,19 +8,23 @@
   --foreground: 226 232 240;
   /* slate-200 */
 
-  /* Emotional Palette */
-  --primary: 99 102 241;
-  /* indigo-500 */
-  --primary-glow: 79 70 229;
-  /* indigo-600 */
-  --accent: 244 63 94;
-  /* rose-500 */
+  /* Emotional Palette (Muted Tones) */
+  --muted-terracotta: 224 122 95;
+  /* #E07A5F */
+  --muted-mustard: 242 204 143;
+  /* #F2CC8F */
+  --muted-sage: 129 178 154;
+  /* #81B29A */
+  --muted-slate: 61 90 128;
+  /* #3D5A80 */
+  --muted-cyan: 168 218 220;
+  /* #A8DADC */
 
   /* Cards etc */
   --card-bg: 15 23 42;
   /* slate-900 */
-  --card-border: 30 41 59;
-  /* slate-800 */
+  --card-border: 61 90 128;
+  /* muted-slate equivalent */
 }
 
 body {
