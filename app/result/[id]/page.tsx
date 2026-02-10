@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Share2, ArrowLeft, Calendar, Download } from 'lucide-react';
 import Typewriter from '@/components/Typewriter';
 import GeometricIcon from '@/components/GeometricIcon';
+import MintButton from '@/components/MintButton';
 import { supabase } from '@/lib/supabase';
 
 // Helper to format date as "2026. 02. 10. (Tue)"
@@ -151,11 +152,11 @@ export default async function ResultPage({ params }: { params: { id: string } })
                 {/* Footer Actions */}
                 <footer className="bg-stone-50 p-6 flex justify-between items-center text-xs text-stone-400">
                     <span>Sense Your Day © 2026</span>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center">
+                        <MintButton resultId={params.id} colorCode={art_curation.color_code} />
                         <button className="flex items-center hover:text-stone-600 transition-colors">
                             <Share2 className="w-4 h-4 mr-1" /> Share
                         </button>
-                        {/* Download feature could go here */}
                     </div>
                 </footer>
 
