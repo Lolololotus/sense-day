@@ -1,28 +1,35 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   /* Warm Oatmeal Theme */
-  --background: 250 248 245; /* #FAF8F5 */
-  --foreground: 42 42 42;    /* #2A2A2A */
+  --background: 250 248 245;
+  /* #FAF8F5 */
+  --foreground: 42 42 42;
+  /* #2A2A2A */
 
   /* Emotional Palette (Minumsa Style) */
-  --muted-terracotta: 224 122 95;  /* #E07A5F (Point Color) */
-  --muted-paper: 242 238 230;      /* #F2EEE6 (Card Bg) */
-  --muted-ink: 60 60 60;           /* #3C3C3C (Text Muted) */
-  --muted-line: 200 190 180;       /* #C8BEB4 (Lines) */
-
-  /* Fonts */
-  --font-serif: var(--font-nanum-myeongjo);
+  --muted-terracotta: 224 122 95;
+  /* #E07A5F (Point Color) */
+  --muted-paper: 242 238 230;
+  /* #F2EEE6 (Card Bg) */
+  --muted-ink: 60 60 60;
+  /* #3C3C3C (Text Muted) */
+  --muted-line: 200 190 180;
+  /* #C8BEB4 (Lines) */
 }
 
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));
   min-height: 100vh;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   overflow-x: hidden;
+  font-weight: 600;
+  /* SemiBold as requested */
 }
 
 @layer utilities {
