@@ -20,8 +20,13 @@ const nanumMyeongjo = Nanum_Myeongjo({
 });
 
 export const metadata: Metadata = {
-  title: "Sense Your Day",
-  description: "Your emotional companion for a better day.",
+  title: "Sense Your Day | 당신의 하루를 감각하세요",
+  description: "사주와 점성술을 통해 당신의 하루를 문장화하고, 맞춤형 예술을 처방하는 감각적 기록관입니다.",
+  openGraph: {
+    title: "Sense Your Day",
+    description: "오늘 당신의 파도는 어떤 모양인가요?",
+    type: "website"
+  }
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generatePoeticInsight, UserContext } from "@/lib/engine/generator";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 import { getRemedyContext } from "@/lib/astrology";
 
 export async function POST(req: Request) {
@@ -28,6 +28,7 @@ export async function POST(req: Request) {
             birthDate: userProfile?.birthDate || "2000-01-01",
             birthTime: userProfile?.birthTime || "12:00",
             birthCity: userProfile?.birthCity || "Seoul",
+            birthTimeUnknown: userProfile?.birthTimeUnknown,
             feeling: message,
             // Inject calculated data
             sajuElements: remedyContext.missingElements,
@@ -43,12 +44,6 @@ export async function POST(req: Request) {
         const aiResponse = await generatePoeticInsight(context);
 
         // 5. Append Art Curation Data (Derived from RemedyContext) relative to AI's output
-        // The AI generates the text, but the "Art Curation" card needs specific structured data.
-        // We override or merge the engine's recommendation with the AI's if needed, 
-        // but typically the Engine determines the 'Curation' logic (Color, Element).
-
-        // We attach the calculated remedy data to the response so the UI can render the 'Geometric Icon' and 'Color'
-        // correctly, ensuring the visual matches the 'Energy'.
         const finalResponse = {
             ...aiResponse,
             art_curation: {
@@ -59,19 +54,34 @@ export async function POST(req: Request) {
             }
         };
 
-        // 6. Save to Supabase
+        // 6. Save to Supabase (SERVER SIDE SECURE WRITE)
+        let insertedId = null;
         try {
-            await supabase.from('results').insert({
-                user_profile: context,
-                user_message: message,
-                analysis_result: finalResponse,
-                // created_at is auto
-            });
+            const { data, error } = await supabaseAdmin
+                .from('results')
+                .insert({
+                    user_profile: context,
+                    user_message: message,
+                    analysis_result: finalResponse
+                    // is_minted defaults to false
+                })
+                .select('id')
+                .single();
+
+            if (error) throw error;
+            insertedId = data.id;
+
         } catch (dbError) {
-            console.warn("DB Save failed", dbError);
+            console.error("DB Save failed", dbError);
+            // We might still want to return the result even if save fails, 
+            // but for this app flow, the result page depends on the DB ID.
+            // We will return the result, but client might not be able to redirect.
         }
 
-        return NextResponse.json(finalResponse);
+        return NextResponse.json({
+            ...finalResponse,
+            id: insertedId // Send ID back to client
+        });
 
     } catch (error) {
         console.error("API Error:", error);

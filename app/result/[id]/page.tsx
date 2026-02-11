@@ -1,69 +1,58 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { GeneratorResult } from "@/lib/engine/generator";
-import GeometricFrame from "@/components/GeometricFrame";
-import ResultCard from "@/components/ResultCard";
-import { Loader2 } from "lucide-react";
+import ResultClient from "@/components/ResultClient";
 
-interface ResultData {
-    id: number;
-    user_profile: { name: string };
-    analysis_result: GeneratorResult;
+// Force dynamic rendering since we are fetching data based on ID
+export const dynamic = 'force-dynamic';
+
+async function getResult(id: string) {
+    const { data, error } = await supabase
+        .from('results')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error || !data) return null;
+    return data;
 }
 
-export default function ResultPage() {
-    const params = useParams();
-    const [data, setData] = useState<ResultData | null>(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchResult = async () => {
-            // Handle unwrapping params if it's a promise (Next.js 15+ compatible)
-            // But primarily checking if ID exists in standard params object for now.
-            const id = params?.id;
-            if (!id) return;
-
-            const { data: resultData, error } = await supabase
-                .from('results')
-                .select('*')
-                .eq('id', id)
-                .single();
-
-            if (error) {
-                console.error("Error fetching result:", error);
-            } else {
-                setData(resultData);
-            }
-            setLoading(false);
-        };
-
-        fetchResult();
-    }, [params]);
-
-    if (loading) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-[#FAF8F5]">
-                <Loader2 className="w-8 h-8 text-[#E07A5F] animate-spin" />
-            </div>
-        );
-    }
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await params;
+    const data = await getResult(id);
 
     if (!data) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-[#FAF8F5] text-[#2A2A2A] font-serif">
-                <p>결과를 찾을 수 없습니다.</p>
-            </div>
-        );
+        return {
+            title: "Sense Your Day",
+            description: "당신의 하루를 감각하세요."
+        };
     }
 
-    return (
-        <main className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center py-10 selection:bg-[#E07A5F]/20">
-            <GeometricFrame>
-                <ResultCard result={data.analysis_result} userName={data.user_profile.name} />
-            </GeometricFrame>
-        </main>
-    );
+    const { user_profile, analysis_result } = data;
+    return {
+        title: `${user_profile.name}님의 하루 - Sense Your Day`,
+        description: `"${analysis_result.today_advice.substring(0, 60)}..."`,
+        openGraph: {
+            title: `${user_profile.name}님의 감각적인 하루`,
+            description: analysis_result.today_advice,
+            images: [
+                {
+                    url: '/tog-image.png',
+                    width: 1200,
+                    height: 630,
+                }
+            ]
+        }
+    };
+}
+
+export default async function ResultPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const data = await getResult(id);
+
+    if (!data) {
+        return notFound();
+    }
+
+    return <ResultClient data={data} />;
 }

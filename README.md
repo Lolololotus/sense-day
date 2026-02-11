@@ -1,102 +1,55 @@
 # ✨ SENSE YOUR DAY: 오늘의 나를 보듬는 다정한 길잡이
 "불확실한 내일이 아닌, 온전한 오늘을 온전히 감각하는 시간."
 
-**SENSE YOUR DAY(SYD)**는 당신의 가장 가까운 접점에서 매일의 불안을 다정함으로 치유하는 서비스입니다. 단순히 운명을 점치는 도구가 아니라, 사용자가 자신의 내면을 깊이 들여다보게 함으로써 불확실성 속에서 정서적 안정감을 찾는 '감정적 동반자' 역할을 수행합니다.
+## 🖋️ Founder's Vision
+"우리는 기술이 차가운 숫자보다 다정한 문장에 가닿기를 바랍니다."
+
+범람하는 정보와 소음의 시대 속에서, 현대인들은 정작 '가장 사적인 자신'을 잃어버리곤 합니다. **SENSE YOUR DAY(SYD)**는 그 소음으로부터 한 걸음 물러나, 당신이 태어난 순간의 우주적 배치를 한 조각의 예술로 처방하는 서비스입니다.
+
+우리는 고전적인 명리학과 서양 점성술의 데이터를 현대적인 AI의 시각으로 재해석했습니다. 이는 단순한 미래 예측이 아닌, 오늘을 견디는 당신에게 건네는 **'감각적인 위로'**이자 **'문학적인 휴식'**입니다.
 
 ## 🌙 Key Features
 
-### 1. 🤖 인터렉티브 체크인 (Interactive Check-in)
-- **다정한 페르소나**: 격식 있으면서도 따뜻한 어투를 유지하며 사용자의 현재 상태를 묻습니다.
-- **Soft Data 수집**: "오늘 기분은 좀 어때요?"라는 질문을 통해 사용자의 실시간 감정과 상황 컨텍스트를 수집합니다.
-- **맥락 인지**: 수집된 대화 데이터를 AI 프롬프트에 주입하여 개인화된 위로를 조립합니다.
+### 1. 🎨 따뜻하면서 기하학적인 미니멀리즘 (Minumsa & Geometric UI)
+*   **따뜻한 오트밀 테마**: 차가운 디지털 환경에서 벗어나 오래된 책의 첫 페이지를 펼치는 듯한 따뜻한 종이 질감의 UI를 제공합니다.
+*   **기하학적 드로잉**: 유저의 운명 코드를 형상화한 1px의 얇은 선들이 화면 위에서 정교하게 그려지는 애니메이션을 통해 '나만을 위한 처방전'이 만들어지는 서사를 부여합니다.
+*   **나눔명조(Nanum Myeongjo)**: 문학적인 깊이를 더하는 세리프체 중심의 타이포그래피를 적용했습니다.
 
 ### 2. 🔮 하이브리드 분석 엔진 (Hybrid Engine)
-- **Hard Data 결합**: 동양의 **사주(만세력)**와 서양의 점성술(Swiss Ephemeris) 데이터를 정밀하게 결합합니다.
-- **3단계 아웃풋 구성**:
-    - **오늘의 한 줄**: 오늘의 에너지 흐름을 시적으로 함축한 문장.
-    - **당신을 위한 갈무리**: 데이터 분석 결과를 다정하게 풀어낸 3문장 이내의 위로.
-    - **오늘의 행동 지침**: 직설적이되 품격 있는 명확한 가이드 제공.
+*   **데이터 기반 위로**: lunar-javascript 기반의 만세력 분석과 서양 점성술 행성 위치 데이터를 결합하여 유저의 고유한 에너지를 도출합니다.
+*   **개인화된 페르소나**: 수집된 하드 데이터(Hard Data)를 AI가 민음사 스타일의 우아한 문장으로 번역하여 전달합니다.
 
-### 3. 🎨 예술 통합 처방 (Total Arts Remedy)
-- **에너지 보완 큐레이션**: 사주와 점성술 데이터를 바탕으로 부족한 에너지를 보완할 예술 작품을 처방합니다.
-- **시각적/청각적 리메디**:
-    - 특정 기운이 필요한 날에 맞춘 명화 및 영화 장면 추천.
-    - 평온함과 주파수 조율을 위한 음악(Spotify) 추천.
-- **서사적 통합**: AI가 큐레이션된 예술 조각들을 하나의 이야기로 엮어 감각적인 안식을 선사합니다.
-
-### 4. 🔐 영혼의 각인 (SBT Identity)
-- **데이터 주권**: 사용자의 고유한 탄생 정보를 **SBT(Soulbound Token)**로 발행하여 디지털 자산화합니다.
-- **영혼의 갤러리**: 처방받은 예술 작품과 문장은 SBT 메타데이터에 기록되어 개인의 영원한 인생 자산이 됩니다.
+### 3. 🔐 영혼의 각인 (SBT Identity & Privacy)
+*   **Web3 데이터 지속성**: 지갑 연결을 통해 유저의 탄생 정보를 안전하게 보관하며, 재방문 시 별도의 입력 없이 자신의 우주를 즉시 마주할 수 있습니다.
+*   **SBT 발행 시뮬레이션**: 처방받은 예술 작품과 문장을 **SBT(Soulbound Token)**로 발행하여 유저의 영원한 인생 자산으로 기록합니다.
 
 ## 🛠 Tech Stack
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS (Emotional Gradient UI)
-- **Database**: Supabase (User & Chat History)
-- **AI**: Gemini API / GPT-4o (via MCP)
-- **Blockchain**: Soulbound Token (ERC-5192)
+*   **Framework**: Next.js 14 (App Router)
+*   **Styling**: Tailwind CSS / Framer Motion (Geometric Animation)
+*   **Database**: Supabase (User & Results with RLS Security)
+*   **AI Engine**: Gemini API (Poetic Insight Generation)
+*   **Hosting**: Vercel (CI/CD optimized)
 
 ## 🚀 Getting Started
+<details>
+<summary><strong>개발 환경 설정 (Environment Setup) - Click to Expand</strong></summary>
 
-### Repository Clone
-```bash
-git clone https://github.com/Lolololotus/sense-day.git
-cd sense-day
-```
-
-### Install Dependencies
-```bash
-npm install
-```
-
-### Environment Setup
 Create a `.env.local` file and add the following keys:
+
 ```bash
 GEMINI_API_KEY=your_gemini_api_key
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key #(Server Only)
 ```
-
-### Run Development Server
-```bash
-npm run dev
-```
-
-### Deployment (Vercel)
-This project is optimized for deployment on [Vercel](https://vercel.com/new).
-
-1. Clone this repository.
-2. Import the project into Vercel.
-3. Add the **Environment Variables** listed above in the Vercel Dashboard.
-4. Click **Deploy**.
-
-## 📂 Project Structure
-```
-src/
-├── app/
-│   ├── api/chat/           # AI Remedy Logic API
-│   ├── check-in/           # Daily User Interaction Page
-│   └── page.tsx            # Landing & Sacred Input
-├── components/
-│   ├── ui/
-│   │   ├── RemedyCard.tsx  # Arts Curation Display
-│   │   ├── OrbitBackground.tsx # Celestial Animation
-│   │   └── WalletConnect.tsx # SBT Minting UI
-├── lib/
-│   ├── astrology.ts        # Swiss Ephemeris Engine
-│   └── saju.ts             # Manseryeok Logic
-└── types/
-    └── index.ts            # Destiny_Identity Types
-```
+</details>
 
 ## 🗺 Roadmap
-- [x] Phase 1: Project Vision & Sacred Input UI 
-- [x] Phase 2: AI Interactive Check-in & Persona 
-- [x] **Milestone**: UI/UX Redesign - Minumsa Style & Nanum Myeongjo
-- [x] **Milestone**: Deployment Migration to Vercel
-- [ ] Phase 3: Hybrid Analysis Engine (Saju + Astrology) <!-- In Progress --> 
-- [ ] Phase 4: Total Arts Remedy Curation System 
-- [ ] Phase 5: SBT Minting & Web3 Data Sovereignty 
+*   ✅ **Phase 1: Project Vision & Sacred Input UI**
+*   ✅ **Phase 2: UI/UX Redesign - Minumsa Style & Nanum Myeongjo**
+*   ✅ **Phase 3: Hybrid Analysis Engine (Saju + Astrology)**
+*   ✅ **Phase 4: Geometric Minimalism UI & Result Card Curation**
+*   🚀 **Phase 5: Deployment Optimization & SBT Persistance** (Completed)
 
 ---
-*Developed with 🌙 by Antigravity Team*
+Developed with 🌙 by **Antigravity Team** for Lotus

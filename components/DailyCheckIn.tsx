@@ -66,31 +66,13 @@ export default function DailyCheckIn() {
 
             if (!res.ok) throw new Error('Failed to fetch from AI');
 
-            const analysisResult: AIResponse = await res.json();
+            const data: AIResponse & { id?: number } = await res.json();
 
-            // 2. Save to Supabase
-            const { data, error } = await supabase
-                .from('results')
-                .insert([
-                    {
-                        user_profile: profile,
-                        analysis_result: analysisResult
-                    }
-                ])
-                .select()
-                .single();
-
-            if (error) {
-                console.error("Supabase Save Error:", error);
-                // Fallback: If save fails, we might still want to show result, 
-                // but since we shifted to routing, we might alert the user or try again.
-                // For MVP, alerting or logging is fine.
-                throw error;
-            }
-
-            // 3. Redirect to Result Page
-            if (data) {
+            // 2. Redirect to Result Page (Using ID from Server)
+            if (data.id) {
                 router.push(`/result/${data.id}`);
+            } else {
+                throw new Error("No ID returned from server");
             }
 
         } catch (error) {

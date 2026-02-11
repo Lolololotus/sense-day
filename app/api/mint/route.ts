@@ -1,6 +1,7 @@
-
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-admin";
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
     try {
@@ -12,9 +13,17 @@ export async function POST(req: Request) {
         // 1. Simulate Blockchain Delay (Mining)
         await new Promise(resolve => setTimeout(resolve, 3000));
 
-        // 2. "Mint" (Update DB to say minted)
-        // For now, we just simulate success. 
-        // In a real app, we might write the Token ID or Hash to Supabase.
+        // 2. "Mint" (Update DB to say minted - PERSISTENCE)
+        // Using Admin client to bypass RLS (since Public cannot update)
+        const { error } = await supabaseAdmin
+            .from('results')
+            .update({ is_minted: true })
+            .eq('id', resultId);
+
+        if (error) {
+            console.error("Failed to persist mint state:", error);
+            throw new Error("Database Update Failed");
+        }
 
         // Mock Transaction Hash (Ethereum-like)
         const mockTxHash = "0x" + Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join("");
@@ -24,7 +33,7 @@ export async function POST(req: Request) {
             message: "SBT Successfully Minted",
             tokenId: Date.now().toString(),
             transactionHash: mockTxHash,
-            explorerUrl: `https://etherscan.io/tx/${mockTxHash}` // Fake link for feeling
+            explorerUrl: `https://etherscan.io/tx/${mockTxHash}`
         });
 
     } catch (error) {
