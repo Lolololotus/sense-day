@@ -111,7 +111,7 @@ export default function DailyCheckIn() {
                 {/* Persistent Header */}
                 <CheckInHeader />
 
-                <div className="flex-1 w-full flex flex-col justify-center mt-40">
+                <div className="flex-1 w-full flex flex-col justify-center mt-32 z-10">
                     <AnimatePresence mode="wait">
                         {/* Intro Step */}
                         {step === "intro" && (
@@ -169,7 +169,7 @@ export default function DailyCheckIn() {
                                     도착했나요?
                                 </h3>
 
-                                <div className="w-full max-w-[320px] flex flex-col gap-4">
+                                <div className="w-full max-w-[320px] flex flex-col gap-5">
                                     {/* Year Input */}
                                     <input
                                         type="text"
@@ -184,11 +184,11 @@ export default function DailyCheckIn() {
                                             setProfile({ ...profile, birthDate: newDate });
                                             if (val.length === 4) document.getElementById('month-day-input')?.focus();
                                         }}
-                                        className="w-full py-4 border border-[#2A2A2A] bg-transparent text-center text-[#2A2A2A] placeholder:text-[#E07A5F]/40 outline-none focus:bg-white/40 transition-colors font-medium text-lg tracking-widest"
+                                        className="w-full py-4 border border-[#2A2A2A] bg-transparent text-center text-[#2A2A2A] placeholder:text-[#E07A5F]/40 outline-none focus:bg-white/40 transition-colors font-medium text-lg tracking-widest flex-shrink-0"
                                     />
 
                                     {/* MM-DD Input */}
-                                    <div className="w-full flex border border-[#2A2A2A] bg-transparent focus-within:bg-white/40 transition-colors">
+                                    <div className="w-full flex border border-[#2A2A2A] bg-transparent focus-within:bg-white/40 transition-colors flex-shrink-0">
                                         <input
                                             id="month-day-input"
                                             type="text"
@@ -225,7 +225,7 @@ export default function DailyCheckIn() {
                                     </div>
 
                                     {/* HH-MM Input */}
-                                    <div className={`w-full flex border border-[#2A2A2A] bg-transparent focus-within:bg-white/40 transition-all ${profile.birthTimeUnknown ? 'opacity-30 pointer-events-none bg-gray-100' : ''}`}>
+                                    <div className={`w-full flex border border-[#2A2A2A] bg-transparent focus-within:bg-white/40 transition-all flex-shrink-0 ${profile.birthTimeUnknown ? 'opacity-30 pointer-events-none bg-gray-100' : ''}`}>
                                         <input
                                             id="time-input"
                                             type="text"
@@ -262,27 +262,29 @@ export default function DailyCheckIn() {
                                         />
                                     </div>
 
-                                    {/* Unknown Checkbox */}
-                                    <label className="flex items-center justify-center gap-2 cursor-pointer group mt-2 mb-4">
-                                        <div className={`w-4 h-4 border border-[#E07A5F] flex items-center justify-center transition-colors ${profile.birthTimeUnknown ? 'bg-[#E07A5F]' : 'bg-transparent'}`}>
-                                            {profile.birthTimeUnknown && <div className="w-2 h-2 bg-white" />}
-                                        </div>
-                                        <input
-                                            type="checkbox"
-                                            checked={profile.birthTimeUnknown || false}
-                                            onChange={(e) => setProfile({ ...profile, birthTimeUnknown: e.target.checked })}
-                                            className="hidden"
-                                        />
-                                        <span className="text-sm text-[#E07A5F] font-medium">시간을 모릅니다</span>
-                                    </label>
+                                    {/* Unknown Checkbox and Button Group */}
+                                    <div className="flex flex-col gap-4 mt-2">
+                                        <label className="flex items-center justify-center gap-2 cursor-pointer group">
+                                            <div className={`w-4 h-4 border border-[#E07A5F] flex items-center justify-center transition-colors ${profile.birthTimeUnknown ? 'bg-[#E07A5F]' : 'bg-transparent'}`}>
+                                                {profile.birthTimeUnknown && <div className="w-2 h-2 bg-white" />}
+                                            </div>
+                                            <input
+                                                type="checkbox"
+                                                checked={profile.birthTimeUnknown || false}
+                                                onChange={(e) => setProfile({ ...profile, birthTimeUnknown: e.target.checked })}
+                                                className="hidden"
+                                            />
+                                            <span className="text-sm text-[#E07A5F] font-medium">시간을 모릅니다</span>
+                                        </label>
 
-                                    <button
-                                        onClick={handleNext}
-                                        disabled={!profile.birthDate || (!profile.birthTime && !profile.birthTimeUnknown)}
-                                        className="w-full py-4 border border-[#2A2A2A] text-[#E07A5F] text-lg font-bold hover:bg-[#2A2A2A] hover:text-[#FAF8F5] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#E07A5F] transition-all"
-                                    >
-                                        연결하기
-                                    </button>
+                                        <button
+                                            onClick={handleNext}
+                                            disabled={!profile.birthDate || (!profile.birthTime && !profile.birthTimeUnknown)}
+                                            className="w-full py-4 border border-[#2A2A2A] text-[#E07A5F] text-lg font-bold hover:bg-[#2A2A2A] hover:text-[#FAF8F5] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#E07A5F] transition-all flex-shrink-0"
+                                        >
+                                            연결하기
+                                        </button>
+                                    </div>
                                 </div>
                             </motion.div>
                         )}
