@@ -61,7 +61,6 @@ export async function POST(req: Request) {
                 .from('results')
                 .insert({
                     user_profile: context,
-                    user_message: message,
                     analysis_result: finalResponse
                     // is_minted defaults to false
                 })

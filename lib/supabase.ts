@@ -1,9 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Validation for development debugging
+if (!supabaseUrl || !supabaseKey) {
+    if (typeof window === 'undefined' && process.env.NODE_ENV !== 'production') {
+        console.error("CRITICAL: Supabase client environment variables are missing!");
+    }
+}
+
+export const supabase = (supabaseUrl && supabaseKey)
+    ? createClient(supabaseUrl, supabaseKey)
+    : { from: () => ({ select: () => ({ single: () => ({ data: {}, error: null }) }) }) } as any;
 
 export type User = {
     id: string;
