@@ -1,15 +1,18 @@
-"use client";
-
 import { GeneratorResult } from "@/lib/engine/generator";
 import { motion } from "framer-motion";
-import { Quote, Music, Palette } from "lucide-react";
+import { Quote, Music, Palette, Sparkles } from "lucide-react";
+import { calculateLifeRhythm, RhythmPoint } from "@/lib/engine/saju";
+import LifeRhythmChart from "./LifeRhythmChart";
 
 interface ResultCardProps {
     result: GeneratorResult;
     userName: string;
+    birthDate?: string; // Passed from profile
 }
 
-export default function ResultCard({ result, userName }: ResultCardProps) {
+export default function ResultCard({ result, userName, birthDate }: ResultCardProps) {
+    const rhythmData = birthDate ? calculateLifeRhythm(new Date(birthDate)) : [];
+
     return (
         <div className="flex flex-col items-center text-center space-y-12 font-serif text-[#2A2A2A]">
 
@@ -28,6 +31,13 @@ export default function ResultCard({ result, userName }: ResultCardProps) {
                 </p>
                 <div className="w-1 h-1 rounded-full bg-[#E07A5F] mx-auto"></div>
             </div>
+
+            {/* Life Rhythm Graph Section (Flash Mission) */}
+            {rhythmData.length > 0 && (
+                <div className="w-full border-y border-[#2A2A2A]/5 py-4">
+                    <LifeRhythmChart data={rhythmData} />
+                </div>
+            )}
 
             {/* Curious Question */}
             <div className="space-y-4 px-4 bg-[#2A2A2A]/5 py-8 rounded-sm mx-4">
@@ -85,6 +95,22 @@ export default function ResultCard({ result, userName }: ResultCardProps) {
                 </div>
             </div>
 
+            {/* Coming Soon: Artistic Prescription Section (Skeleton UI) */}
+            <div className="w-full pt-12 space-y-6 opacity-40">
+                <div className="flex items-center justify-center space-x-2 text-[#2A2A2A]/40">
+                    <Sparkles className="w-4 h-4" />
+                    <span className="text-xs font-sans tracking-[0.1em]">COMING SOON</span>
+                </div>
+
+                <div className="space-y-4 px-8">
+                    <div className="h-4 bg-[#2A2A2A]/5 rounded animate-pulse w-3/4 mx-auto"></div>
+                    <div className="h-3 bg-[#2A2A2A]/5 rounded animate-pulse w-1/2 mx-auto"></div>
+                    <p className="text-[10px] font-sans text-center text-[#2A2A2A]/40 tracking-tight mt-4 italic">
+                        "당신의 계절에 필요한 예술 한 조각을 고르고 있습니다."
+                    </p>
+                </div>
+            </div>
+
             {/* Footer Signature */}
             <div className="pt-12 pb-4 opacity-40">
                 <p className="text-[0.6rem] font-sans tracking-[0.3em]">SENSE YOUR DAY</p>
@@ -93,3 +119,4 @@ export default function ResultCard({ result, userName }: ResultCardProps) {
         </div>
     );
 }
+
